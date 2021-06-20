@@ -17,7 +17,7 @@ db = Database()
 
 @app.post('/api/createPoll',
           response_description="Id добавленного голосования")
-async def add(poll: PollType) -> Dict[str, Any]:
+async def create_poll(poll: PollType) -> Dict[str, Any]:
     poll_id = db.add_poll(poll)
     return {'status': 'ok', 'id': poll_id}
 

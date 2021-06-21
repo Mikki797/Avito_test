@@ -2,12 +2,7 @@
 JSON API Service
 """
 
-import json
-
-from datetime import datetime
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Dict, Any, Optional
 
 from app.api_types import PollType, VoteType, PollOutType, ResultType, ChoiceResultType
 from app.database import Database

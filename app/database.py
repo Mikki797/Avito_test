@@ -70,18 +70,18 @@ class Database:
         return result_map
 
 
-db = Database()
-poll_data = {
-    'name': 'Лучший покемон',
-    'choices': ['Слоупок', 'Пикачу']
-}
-poll = PollType(**poll_data)
-print(db.add_poll(poll))
-
-vote_data = {
-    'poll_id': 3,
-    'choice_id': 10
-}
-vote = VoteType(**vote_data)
-print(db.vote(vote))
-print(db.get_result(100))
+# db = Database()
+# poll_data = {
+#     'name': 'Лучший покемон',
+#     'choices': ['Слоупок', 'Пикачу']
+# }
+# poll = PollType(**poll_data)
+# print(db.add_poll(poll))
+#
+# vote_data = {
+#     'poll_id': 3,
+#     'choice_id': 10
+# }
+# vote = VoteType(**vote_data)
+# print(db.vote(vote))
+# print(db.get_result(100))

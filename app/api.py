@@ -3,6 +3,7 @@ JSON API Service
 """
 
 from fastapi import FastAPI, HTTPException
+from typing import Dict
 
 from app.api_types import PollType, VoteType, PollOutType, ResultType, ChoiceResultType
 from app.database import Database
@@ -22,7 +23,8 @@ async def create_poll(poll: PollType):
 
 # TODO добавить голосование за несколько вариантов
 @app.post('/api/poll',
-          response_description="Проголосовать за вариант в голосовании")
+          response_description="Проголосовать за вариант в голосовании",
+          response_model=Dict[str, str])
 async def vote(vote: VoteType):
     if not db.vote(vote):
         raise HTTPException(status_code=404, detail='Poll or choice not found')

@@ -3,7 +3,7 @@ from typing import List
 from collections import Counter
 
 
-class PollType(BaseModel):
+class PollCreateType(BaseModel):
     name: str
     choices: List[str]
 
@@ -22,7 +22,7 @@ class PollType(BaseModel):
         return choices
 
 
-class PollOutType(BaseModel):
+class PollType(PollCreateType):
     id: int
 
 

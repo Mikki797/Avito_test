@@ -3,7 +3,7 @@ from psycopg2 import sql
 from psycopg2.extras import execute_values
 
 from typing import Dict
-from app.api_types import PollType, VoteType
+from app.api_types import PollCreateType, VoteType
 
 DB_NAME = 'avito_api_db'
 DB_USER = 'postgres'
@@ -20,7 +20,7 @@ class Database:
         self.con = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         self.cursor = self.con.cursor()
 
-    def add_poll(self, poll: PollType) -> int:
+    def add_poll(self, poll: PollCreateType) -> int:
         cursor = self.cursor
 
         query = sql.SQL("INSERT INTO {table} (id, name) VALUES "

@@ -5,7 +5,7 @@ JSON API Service
 from fastapi import FastAPI, HTTPException
 from typing import Dict
 
-from app.api_types import PollType, VoteType, PollOutType, ResultType, ChoiceResultType
+from app.api_types import PollCreateType, PollType, VoteType, ResultType, ChoiceResultType
 from app.database import Database
 
 
@@ -15,10 +15,10 @@ db = Database()
 
 @app.post('/api/createPoll',
           response_description="Id добавленного голосования",
-          response_model=PollOutType)
-async def create_poll(poll: PollType):
+          response_model=PollType)
+async def create_poll(poll: PollCreateType):
     poll_id = db.add_poll(poll)
-    return PollOutType(id=poll_id)
+    return PollType(id=poll_id, **poll.dict())
 
 
 # TODO добавить голосование за несколько вариантов

@@ -2,6 +2,7 @@
 JSON API Service
 """
 
+import uvicorn
 from fastapi import FastAPI, HTTPException
 from typing import Dict
 
@@ -21,7 +22,6 @@ async def create_poll(poll: PollCreateType):
     return PollType(id=poll_id, **poll.dict())
 
 
-# TODO добавить голосование за несколько вариантов
 @app.post('/api/poll',
           response_description="Проголосовать за вариант в голосовании",
           response_model=Dict[str, str])
@@ -41,3 +41,7 @@ async def get_result(poll_id: int):
     return ResultType(poll_id=poll_id,
                       result=[ChoiceResultType(choice_id=choice_id, vote_count=vote_count)
                               for choice_id, vote_count in results.items()])
+
+
+if __name__ == "__main__":
+    uvicorn.run('api:app', host='0.0.0.0', port=8000)

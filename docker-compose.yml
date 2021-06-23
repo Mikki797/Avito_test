@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  app:
+    build: app/
+    container_name: avito_test_api
+    depends_on:
+      - db
+#    environment:
+#      - PYTHONPATH=/app
+#    command: uvicorn app.api:app --host 0.0.0.0 --port 8000 --reload
+#    command: python api.py
+    ports:
+      - 8000:8000
+    restart: always
+
+  db:
+    build: db/
+    container_name: avito_test_db

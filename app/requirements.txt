@@ -1,0 +1,4 @@
+requests
+fastapi
+psycopg2-binary
+uvicorn

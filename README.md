@@ -1,5 +1,22 @@
 # Avito_test
 
+## Запуск
+
+Сервис запускается с помощью docker-compose up
+
+##### Запуск приложения
+```
+$ docker-compose up --build
+```
+
+После этого документация доступна по адресу http://127.0.0.1:8000/docs
+
+##### Запуск тестов
+```
+$ docker-compose -f docker-compose.test.yml -p test_avito_test up --build --abort-on-container-exit
+```
+
+
 ## План работы:
 1. Создание репозитория, создание файлов README и gitignore
 2. Проектирование и создание БД (PostgreSQL)

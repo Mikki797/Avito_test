@@ -1,9 +1,21 @@
+"""
+Types for API service.
+"""
+
 from pydantic import BaseModel, validator
 from typing import List
 from collections import Counter
 
 
 class PollCreateType(BaseModel):
+    """
+    Type to create poll.
+
+    Attributes
+    ----------
+    name : str
+    choices: List[str]
+    """
     name: str
     choices: List[str]
 
@@ -23,19 +35,53 @@ class PollCreateType(BaseModel):
 
 
 class PollType(PollCreateType):
+    """
+    Poll type.
+
+    Attributes
+    ----------
+    id : int
+    name : str
+    choices: List[str]
+    """
     id: int
 
 
 class VoteType(BaseModel):
+    """
+    Vote type.
+
+    Attributes
+    ----------
+    poll_id : int
+    choice_id : int
+    """
     poll_id: int
     choice_id: int
 
 
 class ChoiceResultType(BaseModel):
+    """
+    Type to return result of poll.
+
+    Attributes
+    ----------
+    choice_id : int
+    vote_count : int
+    """
     choice_id: int
     vote_count: int
 
 
 class ResultType(BaseModel):
+    """
+    Result of poll type.
+
+    Attributes
+    ----------
+    poll_id : int
+    result : List[ChoiceResultType]
+        ChoiceResultType from api_types.
+    """
     poll_id: int
     result: List[ChoiceResultType]

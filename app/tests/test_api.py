@@ -13,12 +13,19 @@ def test_create_poll():
     assert response.json()['choices'] == ['Вариант1', 'Вариант2']
 
 
-def test_vote():
+def test_poll():
     response = client.post('/api/createPoll', json={'name': 'Голосование1', 'choices': ['Вариант1', 'Вариант2']})
     id = response.json()['id']
     response = client.post('/api/poll', json={'poll_id': id, 'choice_id': 0})
     assert response.status_code == 200
     assert response.json()['status'] == 'ok'
+
+
+def test_poll_with_invalid_choice_id():
+    response = client.post('/api/createPoll', json={'name': 'Голосование1', 'choices': ['Вариант1', 'Вариант2']})
+    id = response.json()['id']
+    response = client.post('/api/poll', json={'poll_id': id, 'choice_id': 2})
+    assert response.status_code == 400
 
 
 def test_get_result():

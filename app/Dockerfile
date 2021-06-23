@@ -11,4 +11,5 @@ ENV PYTHONPATH "${PYTHONPATH}:/src/app"
 
 EXPOSE 8000
 
+ARG TESTING
 CMD python app/api.py

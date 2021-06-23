@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  test_app:
+    build:
+      context: app
+    container_name: test_avito_test_api
+    environment:
+      DB_HOST: 'test_avito_test_db'
+    command: sh -c "sleep 5 && pip install pytest pytest-cov && pytest app/tests --cov=app"
+    depends_on:
+      - test_db
+#    ports:
+#      - 8000:8000
+
+  test_db:
+    build: db/
+    container_name: test_avito_test_db

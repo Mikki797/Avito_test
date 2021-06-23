@@ -11,7 +11,8 @@ DB_NAME = 'avito_api_db'
 DB_TEST_NAME = 'avito_api_db_test'
 DB_USER = 'postgres'
 DB_PASSWORD = 'admin'
-DB_HOST = 'avito_test_db'
+# DB_HOST = 'avito_test_db'
+DB_HOST = os.environ.get('DB_HOST')
 DB_PORT = '5432'
 
 POLL_TABLE_NAME = 'polls'
@@ -20,8 +21,7 @@ CHOICE_TABLE_NAME = 'choices'
 
 class Database:
     def __init__(self):
-        db_name = DB_NAME if not os.environ.get('TESTING') else DB_TEST_NAME
-        self.con = psycopg2.connect(dbname=db_name, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
+        self.con = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
         self.cursor = self.con.cursor()
 
     def add_poll(self, poll: PollCreateType) -> int:

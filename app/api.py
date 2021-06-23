@@ -25,7 +25,7 @@ async def create_poll(poll: PollCreateType):
 @app.post('/api/poll',
           response_description="Проголосовать за вариант в голосовании",
           response_model=Dict[str, str])
-async def vote(vote: VoteType):
+async def poll(vote: VoteType):
     if not db.vote(vote):
         raise HTTPException(status_code=404, detail='Poll or choice not found')
     return {'status': 'ok'}

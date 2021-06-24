@@ -1,10 +1,10 @@
 """
 JSON API Service
 """
+from typing import Dict
 
 import uvicorn
 from fastapi import FastAPI, HTTPException
-from typing import Dict
 
 from app.api_types import PollCreateType, PollType, VoteType, ResultType, ChoiceResultType
 from app.database import Database

@@ -25,7 +25,7 @@ def test_poll_with_invalid_choice_id():
     response = client.post('/api/createPoll', json={'name': 'Голосование1', 'choices': ['Вариант1', 'Вариант2']})
     id = response.json()['id']
     response = client.post('/api/poll', json={'poll_id': id, 'choice_id': 2})
-    assert response.status_code == 400
+    assert response.status_code == 404
 
 
 def test_get_result():

@@ -2,9 +2,10 @@
 Types for API service.
 """
 
-from pydantic import BaseModel, validator
 from typing import List
 from collections import Counter
+
+from pydantic import BaseModel, validator
 
 
 class PollCreateType(BaseModel):
@@ -21,7 +22,7 @@ class PollCreateType(BaseModel):
 
     @validator('name')
     def name_not_empty(cls, name: str):
-        if not len(name):
+        if name:
             raise ValueError('Name cannot be empty string')
         return name
 
@@ -29,7 +30,7 @@ class PollCreateType(BaseModel):
     def choices_not_empty_no_duplicates(cls, choices: List[str]) -> List[str]:
         if not choices:
             raise ValueError('Choices must contain at least one element')
-        elif Counter(choices).most_common(1)[0][1] > 1:
+        if Counter(choices).most_common(1)[0][1] > 1:
             raise ValueError('Choices must not contain the same elements')
         return choices
 

@@ -1,9 +1,13 @@
-import psycopg2
-from psycopg2 import sql
-from psycopg2.extras import execute_values
+"""
+Provide access to database
+"""
 
 import os
 from typing import List, Dict
+
+import psycopg2
+from psycopg2 import sql
+from psycopg2.extras import execute_values
 
 DB_NAME = 'avito_api_db'
 DB_TEST_NAME = 'avito_api_db_test'
@@ -23,12 +27,14 @@ class Database:
     Attributes
     ----------
     con : psycopg2.connection
-        Handles the connection to PostgreSQL database instance with received name, user, password, host and port.
+        Handles the connection to PostgreSQL database instance with received name,
+        user, password, host and port.
     cursor: psycopg2 cursor class
         Allows to execute PostgreSQL command in a database session.
     """
     def __init__(self):
-        self.con = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST, port=DB_PORT)
+        self.con = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD,
+                                    host=DB_HOST, port=DB_PORT)
         self.cursor = self.con.cursor()
 
     def add_poll(self, poll_name: str, choices: List[str]) -> int:

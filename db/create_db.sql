@@ -11,4 +11,4 @@ CREATE TABLE choices (
         PRIMARY KEY (id, poll_id),
         UNIQUE (poll_id, name)
 )
-WITH (fillfactor=70);
+WITH (fillfactor=50);

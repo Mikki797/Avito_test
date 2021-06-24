@@ -22,7 +22,7 @@ class PollCreateType(BaseModel):
 
     @validator('name')
     def name_not_empty(cls, name: str):
-        if name:
+        if not name:
             raise ValueError('Name cannot be empty string')
         return name
 

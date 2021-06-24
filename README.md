@@ -29,3 +29,6 @@ $ docker-compose -f docker-compose.test.yml -p test_avito_test up --build --abor
 5. Написание тестов
 6. Docker
 7. Написание документации
+
+## Схема архитектуры сервиса:
+https://miro.com/app/board/o9J_l99xwVc=/
